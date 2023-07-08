@@ -1,20 +1,55 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+// const movieSchema = mongoose.Schema(
 const cardSchema = mongoose.Schema(
   {
-    name: {
+    country: {
       type: String,
-      required: [true, 'Поле "name" должно быть заполнено'],
-      minlength: [2, 'Минимальная длина поля "name" - 2'],
-      maxlength: [30, 'Максимальная длина поля "name" - 30'],
+      required: [true, 'Поле "country" должно быть заполнено'],
     },
-    link: {
+    director: {
       type: String,
-      required: true,
+      required: [true, 'Поле "director" должно быть заполнено'],
+    },
+    duration: {
+      type: Number,
+      required: [true, 'Поле "duration" должно быть заполнено'],
+      validate: {
+        validator: (v) => validator.isNumeric(v),
+        message: 'Поле "trailerLink" должно быть числом',
+      },
+    },
+    year: {
+      type: String,
+      required: [true, 'Поле "year" должно быть заполнено'],
+    },
+    description: {
+      type: String,
+      required: [true, 'Поле "description" должно быть заполнено'],
+    },
+    image: {
+      type: String,
+      required: [true, 'Поле "image" должно быть заполнено'],
       validate: {
         validator: (v) => validator.isURL(v),
-        message: 'Некорректный URL',
+        message: 'Некорректный URL поля "image"',
+      },
+    },
+    trailerLink: {
+      type: String,
+      required: [true, 'Поле "trailerLink" должно быть заполнено'],
+      validate: {
+        validator: (v) => validator.isURL(v),
+        message: 'Некорректный URL поля "trailerLink"',
+      },
+    },
+    thumbnail: {
+      type: String,
+      required: [true, 'Поле "thumbnail" должно быть заполнено'],
+      validate: {
+        validator: (v) => validator.isURL(v),
+        message: 'Некорректный URL поля "thumbnail"',
       },
     },
     owner: {
@@ -22,17 +57,25 @@ const cardSchema = mongoose.Schema(
       ref: 'user',
       required: true,
     },
-    likes: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: 'user',
-      default: [],
+    movieId: {
+      type: Number,
+      required: [true, 'Поле "movieId" должно быть заполнено'],
+      validate: {
+        validator: (v) => validator.isNumeric(v),
+        message: 'Поле "movieId" должно быть числом',
+      },
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
+    nameRU: {
+      type: String,
+      required: [true, 'Поле "nameRU" должно быть заполнено'],
+    },
+    nameEN: {
+      type: String,
+      required: [true, 'Поле "nameEN" должно быть заполнено'],
     },
   },
   { versionKey: false },
 );
 
+// module.exports = mongoose.model('movie', movieSchema);
 module.exports = mongoose.model('card', cardSchema);
