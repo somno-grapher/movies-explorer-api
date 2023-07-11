@@ -6,8 +6,18 @@ const BadRequestError = require('../errors/BadRequestError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 
+// const getCards = (req, res, next) => {
+//   cardModel.find({})
+//     .then((cards) => {
+//       res.send(cards);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// };
+
 const getCards = (req, res, next) => {
-  cardModel.find({})
+  cardModel.find({ owner: req.user._id })
     .then((cards) => {
       res.send(cards);
     })
