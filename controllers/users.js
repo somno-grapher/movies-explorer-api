@@ -11,15 +11,15 @@ const ConflictError = require('../errors/ConflictError');
 
 const SALT_ROUNDS = 10;
 
-const getUsers = (req, res, next) => {
-  userModel.find({})
-    .then((users) => {
-      res.send(users);
-    })
-    .catch((err) => {
-      next(err);
-    });
-};
+// const getUsers = (req, res, next) => {
+//   userModel.find({})
+//     .then((users) => {
+//       res.send(users);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// };
 
 const getUser = (id, res, next) => {
   userModel.findById(id)
@@ -35,9 +35,9 @@ const getUser = (id, res, next) => {
 };
 
 // getUser decorator
-const getUserByIdDecorator = (getUserById) => (req, res, next) => {
-  getUserById(req.params.userId, res, next);
-};
+// const getUserByIdDecorator = (getUserById) => (req, res, next) => {
+//   getUserById(req.params.userId, res, next);
+// };
 
 // getUser decorator
 const getCurrentUserDecorator = (getUserById) => (req, res, next) => {
@@ -136,30 +136,30 @@ const updateUserInfo = (id, updatedInfo, res, next) => {
 const updateProfileDecorator = (updateProfile) => (req, res, next) => {
   updateProfile(
     req.user._id,
-    { name: req.body.name, about: req.body.about },
+    { name: req.body.name, email: req.body.email },
     res,
     next,
   );
 };
 
 // updateUserInfo decorator
-const updateAvatarDecorator = (updateAvatar) => (req, res, next) => {
-  updateAvatar(
-    req.user._id,
-    { avatar: req.body.avatar },
-    res,
-    next,
-  );
-};
+// const updateAvatarDecorator = (updateAvatar) => (req, res, next) => {
+//   updateAvatar(
+//     req.user._id,
+//     { avatar: req.body.avatar },
+//     res,
+//     next,
+//   );
+// };
 
 module.exports = {
-  getUsers,
+  // getUsers,
   getUser,
-  getUserByIdDecorator,
+  // getUserByIdDecorator,
   getCurrentUserDecorator,
   createUser,
   login,
   updateProfileDecorator,
-  updateAvatarDecorator,
+  // updateAvatarDecorator,
   updateUserInfo,
 };

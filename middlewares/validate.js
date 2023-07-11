@@ -16,20 +16,21 @@ const validateUserBody = celebrate({
 const validateUserBodyOnProfileUpdate = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
+    email: Joi.string().required().email(),
   }),
 });
 
-const validateUserBodyOnAvatarUpdate = celebrate({
-  body: Joi.object().keys({
-    avatar: Joi.string().required().custom(validateURL),
-  }),
-});
+// const validateUserBodyOnAvatarUpdate = celebrate({
+//   body: Joi.object().keys({
+//     avatar: Joi.string().required().custom(validateURL),
+//   }),
+// });
 
-const validateUserIdParam = celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().required().hex().length(24),
-  }),
-});
+// const validateUserIdParam = celebrate({
+//   params: Joi.object().keys({
+//     userId: Joi.string().required().hex().length(24),
+//   }),
+// });
 
 const validateCardBody = celebrate({
   body: Joi.object().keys({
@@ -56,8 +57,8 @@ const validateCardIdParam = celebrate({
 module.exports = {
   validateUserBody,
   validateUserBodyOnProfileUpdate,
-  validateUserBodyOnAvatarUpdate,
-  validateUserIdParam,
+  // validateUserBodyOnAvatarUpdate,
+  // validateUserIdParam,
   validateCardBody,
   validateCardIdParam,
 };
