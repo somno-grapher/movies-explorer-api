@@ -15,10 +15,6 @@ const cardSchema = mongoose.Schema(
     duration: {
       type: Number,
       required: [true, 'Поле "duration" должно быть заполнено'],
-      validate: {
-        validator: (v) => validator.isNumeric(v),
-        message: 'Поле "trailerLink" должно быть числом',
-      },
     },
     year: {
       type: String,
@@ -60,10 +56,6 @@ const cardSchema = mongoose.Schema(
     movieId: {
       type: Number,
       required: [true, 'Поле "movieId" должно быть заполнено'],
-      validate: {
-        validator: (v) => validator.isNumeric(v),
-        message: 'Поле "movieId" должно быть числом',
-      },
     },
     nameRU: {
       type: String,

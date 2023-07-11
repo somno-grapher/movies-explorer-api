@@ -7,18 +7,15 @@ const { validateURL } = require('../utils/urlValidator');
 
 const validateUserBody = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().custom(validateURL),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
+    name: Joi.string().min(2).max(30),
   }),
 });
 
 const validateUserBodyOnProfileUpdate = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2).max(30),
   }),
 });
 
@@ -36,8 +33,17 @@ const validateUserIdParam = celebrate({
 
 const validateCardBody = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().custom(validateURL),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().custom(validateURL),
+    trailerLink: Joi.string().required().custom(validateURL),
+    thumbnail: Joi.string().required().custom(validateURL),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 });
 
