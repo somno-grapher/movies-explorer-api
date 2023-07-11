@@ -46,21 +46,17 @@ const getCurrentUserDecorator = (getUserById) => (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const {
-    name,
-    about,
-    avatar,
     email,
     password,
+    name,
   } = req.body;
 
   bcrypt.hash(password, SALT_ROUNDS)
 
     .then((hash) => userModel.create({
-      name,
-      about,
-      avatar,
       email,
       password: hash,
+      name,
     }))
 
     .then((user) => {
@@ -69,8 +65,6 @@ const createUser = (req, res, next) => {
           _id: user._id,
           email: user.email,
           name: user.name,
-          about: user.about,
-          avatar: user.avatar,
         },
       });
     })
