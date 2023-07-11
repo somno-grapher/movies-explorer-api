@@ -5,7 +5,15 @@ const { validateCardIdParam, validateCardBody } = require('../middlewares/valida
 router.get('/', cardsController.getCards);
 router.post('/', validateCardBody, cardsController.createCard);
 router.delete('/:cardId', validateCardIdParam, cardsController.deleteCard);
-router.put('/:cardId/likes', validateCardIdParam, cardsController.likeCardDecorator(cardsController.updateLike));
-router.delete('/:cardId/likes', validateCardIdParam, cardsController.unlikeCardDecorator(cardsController.updateLike));
+// router.put(
+//   '/:cardId/likes',
+//   validateCardIdParam,
+//   cardsController.likeCardDecorator(cardsController.updateLike)
+// );
+// router.delete(
+//   '/:cardId/likes',
+//   validateCardIdParam,
+//   cardsController.unlikeCardDecorator(cardsController.updateLike)
+// );
 
 module.exports = router;

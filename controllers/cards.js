@@ -50,16 +50,16 @@ const deleteCard = (req, res, next) => {
 
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Карточка не найдена');
+        throw new NotFoundError('Фильм не найден');
       }
       if (card.owner.toString() !== req.user._id.toString()) {
-        throw new ForbiddenError('Вы не можете удалять чужие карточки');
+        throw new ForbiddenError('Вы не можете удалять чужие фильмы');
       }
       return card.deleteOne();
     })
 
     .then(() => {
-      res.send({ message: 'Карточка удалена' });
+      res.send({ message: 'Фильм удален' });
     })
 
     .catch((err) => {
@@ -67,49 +67,49 @@ const deleteCard = (req, res, next) => {
     });
 };
 
-const updateLike = (isToBeLiked, req, res, next) => {
-  const likeParameters = { likes: req.user._id };
-  const update = isToBeLiked
-    ? { $addToSet: likeParameters }
-    : { $pull: likeParameters };
+// const updateLike = (isToBeLiked, req, res, next) => {
+//   const likeParameters = { likes: req.user._id };
+//   const update = isToBeLiked
+//     ? { $addToSet: likeParameters }
+//     : { $pull: likeParameters };
 
-  cardModel.findByIdAndUpdate(
-    req.params.cardId,
-    update,
-    { new: true },
-  )
+//   cardModel.findByIdAndUpdate(
+//     req.params.cardId,
+//     update,
+//     { new: true },
+//   )
 
-    .then((card) => {
-      if (!card) {
-        throw new NotFoundError('Карточка не найдена');
-      }
-      return res.send(card);
-    })
+//     .then((card) => {
+//       if (!card) {
+//         throw new NotFoundError('Карточка не найдена');
+//       }
+//       return res.send(card);
+//     })
 
-    .catch((err) => {
-      if (err instanceof mongoose.Error.CastError) {
-        next(new BadRequestError('Переданы некорректные данные'));
-        return;
-      }
-      next(err);
-    });
-};
-
-// updateLike decorator
-const likeCardDecorator = (update) => (req, res, next) => {
-  update(true, req, res, next);
-};
+//     .catch((err) => {
+//       if (err instanceof mongoose.Error.CastError) {
+//         next(new BadRequestError('Переданы некорректные данные'));
+//         return;
+//       }
+//       next(err);
+//     });
+// };
 
 // updateLike decorator
-const unlikeCardDecorator = (update) => (req, res, next) => {
-  update(false, req, res, next);
-};
+// const likeCardDecorator = (update) => (req, res, next) => {
+//   update(true, req, res, next);
+// };
+
+// updateLike decorator
+// const unlikeCardDecorator = (update) => (req, res, next) => {
+//   update(false, req, res, next);
+// };
 
 module.exports = {
   getCards,
   createCard,
   deleteCard,
-  updateLike,
-  likeCardDecorator,
-  unlikeCardDecorator,
+  // updateLike,
+  // likeCardDecorator,
+  // unlikeCardDecorator,
 };
