@@ -5,6 +5,5 @@
 
 ## Ссылки на проект
 
-<!-- TODO: update -->
-IP 158.160.6.37
+IP 158.160.2.117
 https://api.movies-explorer.nomoredomains.work
