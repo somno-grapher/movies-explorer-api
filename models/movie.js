@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 // const movieSchema = mongoose.Schema(
-const cardSchema = mongoose.Schema(
+const movieSchema = mongoose.Schema(
   {
     country: {
       type: String,
@@ -70,4 +70,4 @@ const cardSchema = mongoose.Schema(
 );
 
 // module.exports = mongoose.model('movie', movieSchema);
-module.exports = mongoose.model('card', cardSchema);
+module.exports = mongoose.model('movie', movieSchema);

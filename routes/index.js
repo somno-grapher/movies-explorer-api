@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const userRouter = require('./users');
-const cardRouter = require('./cards');
+const movieRouter = require('./movies');
 const usersController = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const { validateUserBody } = require('../middlewares/validate');
@@ -19,7 +19,7 @@ router.use('/signin', validateUserBody, usersController.login);
 
 router.use(auth);
 router.use('/users', userRouter);
-router.use('/cards', cardRouter);
+router.use('/movies', movieRouter);
 
 router.use((req, res, next) => {
   next(new NotFoundError('Маршрут не найден'));

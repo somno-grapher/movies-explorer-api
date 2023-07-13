@@ -1,39 +1,39 @@
 const mongoose = require('mongoose');
 
-const cardModel = require('../models/card');
+const movieModel = require('../models/movie');
 const STATUS_CODES = require('../utils/consts');
 const BadRequestError = require('../errors/BadRequestError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 
-// const getCards = (req, res, next) => {
-//   cardModel.find({})
-//     .then((cards) => {
-//       res.send(cards);
+// const getMovies = (req, res, next) => {
+//   movieModel.find({})
+//     .then((movies) => {
+//       res.send(movies);
 //     })
 //     .catch((err) => {
 //       next(err);
 //     });
 // };
 
-const getCards = (req, res, next) => {
-  cardModel.find({ owner: req.user._id })
-    .then((cards) => {
-      res.send(cards);
+const getMovies = (req, res, next) => {
+  movieModel.find({ owner: req.user._id })
+    .then((movies) => {
+      res.send(movies);
     })
     .catch((err) => {
       next(err);
     });
 };
 
-const createCard = (req, res, next) => {
-  cardModel.create({
+const createMovie = (req, res, next) => {
+  movieModel.create({
     owner: req.user._id,
     ...req.body,
   })
 
-    .then((card) => {
-      res.status(STATUS_CODES.CREATED).send(card);
+    .then((movie) => {
+      res.status(STATUS_CODES.CREATED).send(movie);
     })
 
     .catch((err) => {
@@ -45,17 +45,17 @@ const createCard = (req, res, next) => {
     });
 };
 
-const deleteCard = (req, res, next) => {
-  cardModel.findById(req.params.cardId)
+const deleteMovie = (req, res, next) => {
+  movieModel.findById(req.params.movieId)
 
-    .then((card) => {
-      if (!card) {
+    .then((movie) => {
+      if (!movie) {
         throw new NotFoundError('Фильм не найден');
       }
-      if (card.owner.toString() !== req.user._id.toString()) {
+      if (movie.owner.toString() !== req.user._id.toString()) {
         throw new ForbiddenError('Вы не можете удалять чужие фильмы');
       }
-      return card.deleteOne();
+      return movie.deleteOne();
     })
 
     .then(() => {
@@ -73,17 +73,17 @@ const deleteCard = (req, res, next) => {
 //     ? { $addToSet: likeParameters }
 //     : { $pull: likeParameters };
 
-//   cardModel.findByIdAndUpdate(
-//     req.params.cardId,
+//   movieModel.findByIdAndUpdate(
+//     req.params.movieId,
 //     update,
 //     { new: true },
 //   )
 
-//     .then((card) => {
-//       if (!card) {
+//     .then((movie) => {
+//       if (!movie) {
 //         throw new NotFoundError('Карточка не найдена');
 //       }
-//       return res.send(card);
+//       return res.send(movie);
 //     })
 
 //     .catch((err) => {
@@ -96,20 +96,20 @@ const deleteCard = (req, res, next) => {
 // };
 
 // updateLike decorator
-// const likeCardDecorator = (update) => (req, res, next) => {
+// const likeMovieDecorator = (update) => (req, res, next) => {
 //   update(true, req, res, next);
 // };
 
 // updateLike decorator
-// const unlikeCardDecorator = (update) => (req, res, next) => {
+// const unlikeMovieDecorator = (update) => (req, res, next) => {
 //   update(false, req, res, next);
 // };
 
 module.exports = {
-  getCards,
-  createCard,
-  deleteCard,
+  getMovies,
+  createMovie,
+  deleteMovie,
   // updateLike,
-  // likeCardDecorator,
-  // unlikeCardDecorator,
+  // likeMovieDecorator,
+  // unlikeMovieDecorator,
 };

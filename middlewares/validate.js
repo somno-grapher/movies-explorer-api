@@ -32,7 +32,7 @@ const validateUserBodyOnProfileUpdate = celebrate({
 //   }),
 // });
 
-const validateCardBody = celebrate({
+const validateMovieBody = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
@@ -48,9 +48,9 @@ const validateCardBody = celebrate({
   }),
 });
 
-const validateCardIdParam = celebrate({
+const validateMovieIdParam = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().required().hex().length(24),
+    movieId: Joi.string().required().hex().length(24),
   }),
 });
 
@@ -59,6 +59,6 @@ module.exports = {
   validateUserBodyOnProfileUpdate,
   // validateUserBodyOnAvatarUpdate,
   // validateUserIdParam,
-  validateCardBody,
-  validateCardIdParam,
+  validateMovieBody,
+  validateMovieIdParam,
 };
