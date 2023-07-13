@@ -1,15 +1,10 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+# movies-explorer-api
 
-# react-mesto-api-full
-
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположен в директории `backend/`, а фронтенд - в `frontend/`. 
-  
-Адрес репозитория: https://github.com/somno-grapher/react-mesto-api-full-gha.git
+Репозиторий для пользовательской бэкенд-части приложения кинопоиска.  
+Адрес репозитория: https://github.com/somno-grapher/movies-explorer-api.git
 
 ## Ссылки на проект
 
+<!-- TODO: update -->
 IP 158.160.6.37
-
-Frontend https://mestofrontend.nomoredomains.rocks
-
-Backend https://mestobackend.nomoredomains.rocks
+https://api.movies-explorer.nomoredomains.work

@@ -20,18 +20,6 @@ const validateUserBodyOnProfileUpdate = celebrate({
   }),
 });
 
-// const validateUserBodyOnAvatarUpdate = celebrate({
-//   body: Joi.object().keys({
-//     avatar: Joi.string().required().custom(validateURL),
-//   }),
-// });
-
-// const validateUserIdParam = celebrate({
-//   params: Joi.object().keys({
-//     userId: Joi.string().required().hex().length(24),
-//   }),
-// });
-
 const validateMovieBody = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
@@ -57,8 +45,6 @@ const validateMovieIdParam = celebrate({
 module.exports = {
   validateUserBody,
   validateUserBodyOnProfileUpdate,
-  // validateUserBodyOnAvatarUpdate,
-  // validateUserIdParam,
   validateMovieBody,
   validateMovieIdParam,
 };

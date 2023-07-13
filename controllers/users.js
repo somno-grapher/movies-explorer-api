@@ -11,16 +11,6 @@ const ConflictError = require('../errors/ConflictError');
 
 const SALT_ROUNDS = 10;
 
-// const getUsers = (req, res, next) => {
-//   userModel.find({})
-//     .then((users) => {
-//       res.send(users);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// };
-
 const getUser = (id, res, next) => {
   userModel.findById(id)
     .then((user) => {
@@ -33,11 +23,6 @@ const getUser = (id, res, next) => {
       next(err);
     });
 };
-
-// getUser decorator
-// const getUserByIdDecorator = (getUserById) => (req, res, next) => {
-//   getUserById(req.params.userId, res, next);
-// };
 
 // getUser decorator
 const getCurrentUserDecorator = (getUserById) => (req, res, next) => {
@@ -141,16 +126,6 @@ const updateProfileDecorator = (updateProfile) => (req, res, next) => {
     next,
   );
 };
-
-// updateUserInfo decorator
-// const updateAvatarDecorator = (updateAvatar) => (req, res, next) => {
-//   updateAvatar(
-//     req.user._id,
-//     { avatar: req.body.avatar },
-//     res,
-//     next,
-//   );
-// };
 
 module.exports = {
   // getUsers,

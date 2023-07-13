@@ -6,16 +6,6 @@ const BadRequestError = require('../errors/BadRequestError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 
-// const getMovies = (req, res, next) => {
-//   movieModel.find({})
-//     .then((movies) => {
-//       res.send(movies);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// };
-
 const getMovies = (req, res, next) => {
   movieModel.find({ owner: req.user._id })
     .then((movies) => {
@@ -67,49 +57,8 @@ const deleteMovie = (req, res, next) => {
     });
 };
 
-// const updateLike = (isToBeLiked, req, res, next) => {
-//   const likeParameters = { likes: req.user._id };
-//   const update = isToBeLiked
-//     ? { $addToSet: likeParameters }
-//     : { $pull: likeParameters };
-
-//   movieModel.findByIdAndUpdate(
-//     req.params.movieId,
-//     update,
-//     { new: true },
-//   )
-
-//     .then((movie) => {
-//       if (!movie) {
-//         throw new NotFoundError('Карточка не найдена');
-//       }
-//       return res.send(movie);
-//     })
-
-//     .catch((err) => {
-//       if (err instanceof mongoose.Error.CastError) {
-//         next(new BadRequestError('Переданы некорректные данные'));
-//         return;
-//       }
-//       next(err);
-//     });
-// };
-
-// updateLike decorator
-// const likeMovieDecorator = (update) => (req, res, next) => {
-//   update(true, req, res, next);
-// };
-
-// updateLike decorator
-// const unlikeMovieDecorator = (update) => (req, res, next) => {
-//   update(false, req, res, next);
-// };
-
 module.exports = {
   getMovies,
   createMovie,
   deleteMovie,
-  // updateLike,
-  // likeMovieDecorator,
-  // unlikeMovieDecorator,
 };
