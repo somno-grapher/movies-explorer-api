@@ -6,4 +6,4 @@
 ## Ссылки на проект
 
 IP 158.160.2.117
-https://api.movies-explorer.nomoredomains.work
+https://api.d-movies-explorer.nomoredomains.work

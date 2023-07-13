@@ -128,13 +128,10 @@ const updateProfileDecorator = (updateProfile) => (req, res, next) => {
 };
 
 module.exports = {
-  // getUsers,
   getUser,
-  // getUserByIdDecorator,
   getCurrentUserDecorator,
   createUser,
   login,
   updateProfileDecorator,
-  // updateAvatarDecorator,
   updateUserInfo,
 };
